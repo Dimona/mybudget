@@ -1,0 +1,25 @@
+{
+    "env": {
+        "node": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 2018
+    },
+    "parser": "babel-eslint",
+    "extends": ["airbnb-base", "plugin:prettier/recommended"],
+    "rules": {
+        "no-underscore-dangle": ["error", { "allowAfterThis": true }],
+        "arrow-parens": ["error", "as-needed"],
+        "no-prototype-builtins": "off",
+        "class-methods-use-this": "off",
+        "import/no-dynamic-require": "off",
+        "global-require": "off",
+        "no-param-reassign": "off",
+        "no-unused-expressions": "off",
+        "consistent-return": "off"
+    },
+    "globals": {
+        "use": true,
+        "cradle": true
+    }
+}
