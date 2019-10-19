@@ -8,7 +8,31 @@ module.exports = {
         ],
         '@babel/preset-react'
     ],
-    plugins: ['styled-components', '@babel/plugin-proposal-class-properties', '@babel/plugin-syntax-dynamic-import'],
+    plugins: [
+        ['@babel/plugin-proposal-decorators', { legacy: true }],
+        'styled-components',
+        '@babel/plugin-proposal-class-properties',
+        '@babel/plugin-syntax-dynamic-import',
+        '@babel/plugin-proposal-export-default-from',
+        [
+            'import',
+            {
+                libraryName: '@material-ui/core',
+                libraryDirectory: '', // default: lib
+                camel2DashComponentName: false // default: true
+            },
+            'material-ui-core'
+        ],
+        [
+            'import',
+            {
+                libraryName: '@material-ui/icons',
+                libraryDirectory: '', // or '' if your bundler does not support ES modules
+                camel2DashComponentName: false
+            },
+            'material-ui-icons'
+        ]
+    ],
     env: {
         production: {
             only: ['app'],

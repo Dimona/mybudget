@@ -129,6 +129,7 @@ module.exports = options => ({
             decorators: path.resolve(__dirname, '..', '..', 'app/decorators'),
             config: path.resolve(__dirname, '..', '..', 'app/config'),
             containers: path.resolve(__dirname, '..', '..', 'app/containers'),
+            services: path.resolve(__dirname, '..', '..', 'app/services'),
             utils: path.resolve(__dirname, '..', '..', 'app/utils'),
             styles: path.resolve(__dirname, '..', '..', 'app/styles'),
             images: path.resolve(__dirname, '..', '..', 'app/images'),
