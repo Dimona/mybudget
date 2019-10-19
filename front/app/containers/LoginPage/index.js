@@ -6,8 +6,7 @@ import { FACEBOOK_PROVIDER } from 'components/SocialButton/constants';
 import socialAppIds from 'components/SocialButton/config';
 import messages from 'components/SocialButton/messages';
 import ucfirst from 'ucfirst';
-import Icon from '@mdi/react';
-import { mdiFacebookBox } from '@mdi/js';
+import FacebookBoxIcon from 'mdi-material-ui/FacebookBox';
 
 const handleLoginSuccess = user => {
     console.log(user);
@@ -27,7 +26,7 @@ export default function LoginPage() {
                 appId={socialAppIds[FACEBOOK_PROVIDER]}
                 color="primary"
                 variant="contained"
-                startIcon={<Icon size={1} path={mdiFacebookBox} />}
+                startIcon={<FacebookBoxIcon />}
             >
                 <FormattedMessage {...messages.loginWithButton} values={{ provider: ucfirst(FACEBOOK_PROVIDER) }} />
             </SocialButton>
