@@ -1,13 +1,5 @@
-import React from 'react';
-import SocialLogin from 'react-social-login';
-import Button from '@material-ui/core/Button';
-
-function SocialButton({ children, triggerLogin, ...props }) {
-    return (
-        <Button onClick={triggerLogin} {...props}>
-            {children}
-        </Button>
-    );
-}
-
-export default SocialLogin(SocialButton);
+export { default as SocialButton } from './components/SocialButton';
+export { default as messages } from './messages';
+// export { default as useAsyncSocialButton } from './hooks/useAsyncSocialButton';
+export { default as config } from './config';
+export * from './constants';

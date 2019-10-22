@@ -2,9 +2,9 @@ import { takeEvery, takeLatest, put, call } from 'redux-saga/effects';
 import { SubmissionError } from 'redux-form';
 
 import Auth from 'config/auth';
-import socket from 'config/socket';
-import { ROLE_ADMIN } from 'components/users/constants';
-import { indexUserAction as indexBookmarkAction } from 'components/bookmark/actions';
+// import socket from 'config/socket';
+// import { ROLE_ADMIN } from 'components/users/constants';
+// import { indexUserAction as indexBookmarkAction } from 'components/bookmark/actions';
 import { login, getUser, logout } from '../api';
 import {
     logoutAction,
@@ -29,11 +29,11 @@ export function* handleGetUserSaga() {
         const { data: user } = yield call(getUser);
         yield put(getUserAction.success(user));
 
-        if (user && !user.roles.includes(ROLE_ADMIN)) {
-            yield put(indexBookmarkAction.request());
-        }
+        // if (user && !user.roles.includes(ROLE_ADMIN)) {
+        //     yield put(indexBookmarkAction.request());
+        // }
 
-        socket.connect();
+        // socket.connect();
     } catch (e) {
         Auth.TokenStorage.remove();
         yield put(revokeTokenAction());
@@ -41,10 +41,10 @@ export function* handleGetUserSaga() {
 }
 
 function* handleLoginSaga(action) {
-    const { email, password } = action.payload;
+    const { email, name, avatar, token, tokenExpiresAt } = action.payload;
 
     try {
-        const { data } = yield call(login, { email, password });
+        const { data } = yield call(login, { email, name, avatar, token, tokenExpiresAt });
         Auth.TokenStorage.set(data.token);
         yield call(handleGetUserSaga);
         yield put(loginAction.success(data));
@@ -66,7 +66,7 @@ function* handleLoginSaga(action) {
 function* handleLogoutSaga() {
     try {
         yield call(logout);
-        socket.disconnect();
+        // socket.disconnect();
         Auth.TokenStorage.remove();
         yield put(logoutAction.success());
     } catch (e) {

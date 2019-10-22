@@ -1,22 +1,49 @@
-import React from 'react';
+import React, { useReducer, useCallback } from 'react';
+import { transliterate as tr } from 'transliteration';
+import { useDispatch } from 'react-redux';
 // import ReactDOM from 'react-dom'
-import SocialButton from 'components/SocialButton';
 import { FormattedMessage } from 'react-intl';
-import { FACEBOOK_PROVIDER } from 'components/SocialButton/constants';
-import socialAppIds from 'components/SocialButton/config';
-import messages from 'components/SocialButton/messages';
+import { useInjectSaga } from "utils/injectSaga";
 import ucfirst from 'ucfirst';
 import FacebookBoxIcon from 'mdi-material-ui/FacebookBox';
-
-const handleLoginSuccess = user => {
-    console.log(user);
-};
-
-const handleLoginFailure = err => {
-    console.error(err);
-};
+import { params } from 'config';
+import useDocumentTitle from '@rehooks/document-title';
+import { SocialButton, messages, config as socialAppIds, FACEBOOK_PROVIDER } from 'components/SocialButton';
+// import authReducer, { INITIAL_STATE } from 'components/auth/reducers';
+import { loginWatcherSaga } from 'components/auth/sagas';
+import { loginAction } from 'components/auth/actions';
 
 export default function LoginPage() {
+    useDocumentTitle(`${params.appTitle} - Login`);
+    const dispatch = useDispatch();
+    const login = useCallback(payload => {
+        console.log(dispatch);
+        dispatch(loginAction.request(payload))
+    }, [dispatch]);
+    useInjectSaga(loginWatcherSaga);
+
+    const handleLoginSuccess = useCallback(
+        ({ profile: { email, name, profilePicURL }, token: { accessToken, expiresAt } }) => {
+            console.log(email, name, profilePicURL, accessToken, expiresAt);
+            login({ email, name: tr(name), avatar: profilePicURL, token: accessToken, tokenExpiresAt: expiresAt });
+        },
+        []
+    );
+
+    // const handleLoginSuccess = ({ email, name, profilePicURL, accessToken, expiresAt }) => {
+    //     console.log(email, name, profilePicURL, accessToken, expiresAt);
+    //     login({ email, name: tr(name), avatar: profilePicURL, token: accessToken, tokenExpiresAt: expiresAt })
+    // };
+    //
+    // const handleLoginSuccess = (user) => {
+    //     console.log(user);
+    // };
+
+    const handleLoginFailure = err => {
+        alert(err);
+        console.error(err);
+    };
+
     return (
         <div>
             <SocialButton

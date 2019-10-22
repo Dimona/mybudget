@@ -5,7 +5,7 @@ import {
     GOOGLE_PROVIDER,
     INSTAGRAM_PROVIDER,
     LINKEDIN_PROVIDER
-} from './constants';
+} from '../constants';
 
 export default {
     [FACEBOOK_PROVIDER]: process.env.FACEBOOK_APP_ID,

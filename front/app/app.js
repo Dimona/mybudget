@@ -28,8 +28,10 @@ import { setTokenAction } from 'components/auth/actions';
 // Import root app
 import App from 'containers/App';
 
+// Import Custom Providers
+
 // Import Language Provider
-import LanguageProvider from 'containers/LanguageProvider';
+import LanguageProvider from 'components/language';
 
 // Load the favicon and the .htaccess file
 import '!file-loader?name=[name].[ext]!./images/favicon.ico';

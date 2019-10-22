@@ -10,8 +10,8 @@ import { browserHistory } from 'react-router-dom';
 
 import { HomePage, mapDispatchToProps } from '../index';
 import { changeUsername } from '../actions';
-import { loadRepos } from '../../App/actions';
-import configureStore from '../../../configureStore';
+import { loadRepos } from '../../../App/actions';
+import configureStore from '../../../../configureStore';
 
 describe('<HomePage />', () => {
   let store;

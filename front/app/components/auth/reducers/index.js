@@ -9,12 +9,9 @@ import {
     logoutAction,
     revokeTokenAction,
     refreshUserAction,
-    // forgotPasswordAction,
-    // forgotPasswordSetPasswordAction,
-    // verifyEmailAction
 } from '../actions';
 
-const INITIAL_STATE = {
+export const INITIAL_STATE = {
     token: undefined,
     user: undefined,
     loading: false,
@@ -34,9 +31,6 @@ export default {
                 logoutAction.REQUEST,
                 refreshUserAction.REQUEST,
                 getUserAction.REQUEST,
-                // forgotPasswordAction.REQUEST,
-                // forgotPasswordSetPasswordAction.REQUEST,
-                // verifyEmailAction.REQUEST
             )]: state =>
                 produce(state, draft => {
                     draft.loading = true;
@@ -55,14 +49,10 @@ export default {
                     draft.loading = false;
                 }),
             [combineActions(
-                // forgotPasswordAction.SUCCESS,
-                // forgotPasswordSetPasswordAction.SUCCESS,
                 loginAction.FAILURE,
                 logoutAction.FAILURE,
                 refreshUserAction.FAILURE,
                 getUserAction.FAILURE,
-                // forgotPasswordAction.FAILURE,
-                // forgotPasswordSetPasswordAction.FAILURE
             )]: state => produce(state, draft => {
                 draft.loading = false
             }),

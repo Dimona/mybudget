@@ -1,16 +1,16 @@
 {
-  "name": "react-boilerplate",
+  "name": "my-budget",
   "version": "4.0.0",
   "description": "A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices",
   "repository": {
     "type": "git",
-    "url": "git://github.com/react-boilerplate/react-boilerplate.git"
+    "url": "git@github.com:Dimona/mybudget.git"
   },
   "engines": {
     "npm": ">=5",
     "node": ">=8.15.1"
   },
-  "author": "Max Stoiber",
+  "author": "Dmitriy Ieremenko",
   "license": "MIT",
   "scripts": {
     "analyze:clean": "rimraf stats.json",
@@ -113,7 +113,11 @@
     "redux-actions": "2.6.5",
     "redux-form-saga": "0.2.0",
     "redux-form-validators": "3.3.2",
-    "mdi-material-ui": "6.8.0"
+    "mdi-material-ui": "6.8.0",
+    "react-scroll": "1.7.14",
+    "classnames": "2.2.6",
+    "@rehooks/document-title": "1.0.1",
+    "transliteration": "2.1.7"
   },
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.3.0",
