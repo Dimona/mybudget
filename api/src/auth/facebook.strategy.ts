@@ -14,7 +14,7 @@ export class FacebookStrategy {
 
     init() {
         // const facebookConfig = configService.facebook();
-        use(new PassportFacebookToken(
+        use('facebook-token', new PassportFacebookToken(
             configService.facebook(),
             async (accessToken: string, refreshToken: string, profile: any, done: any) => {
                 // console.log(accessToken, refreshToken, profile);
@@ -26,12 +26,4 @@ export class FacebookStrategy {
             }
         ))
     }
-
-    // async validate(name: string, email: string, token: string, ): Promise<any> {
-    //     const user = await this.authService.validateUser(name, email, token);
-    //     if (!user) {
-    //         throw new UnauthorizedException();
-    //     }
-    //     return user;
-    // }
 }

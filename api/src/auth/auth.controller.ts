@@ -12,10 +12,17 @@ export class AuthController {
         return req.user;
     }
 
+    @Get('user')
+    @UseGuards(AuthGuard('http-bearer'))
+    getUser(@Req() req): User {
+        return req.user
+    }
+
     @Get('facebook')
     @UseGuards(AuthGuard('facebook-token'))
-    getUser(@Req() req) {
+    getFacebookUser(@Req() req) {
         console.log(req);
         console.log(req.user);
+        return req.user;
     }
 }
