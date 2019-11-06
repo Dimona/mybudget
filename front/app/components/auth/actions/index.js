@@ -1,7 +1,7 @@
 import { createFormAction } from 'redux-form-saga';
 import { createAction } from 'redux-actions';
 
-export const loginAction = createFormAction('AUTH_LOGIN');
+export const facebookLoginAction = createFormAction('AUTH_FACEBOOK_LOGIN');
 export const logoutAction = createFormAction('AUTH_LOGOUT');
 export const setTokenAction = createAction('AUTH_TOKEN_SET');
 export const revokeTokenAction = createAction('AUTH_TOKEN_REVOKE');

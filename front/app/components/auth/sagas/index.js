@@ -5,10 +5,10 @@ import Auth from 'config/auth';
 // import socket from 'config/socket';
 // import { ROLE_ADMIN } from 'components/users/constants';
 // import { indexUserAction as indexBookmarkAction } from 'components/bookmark/actions';
-import { login, getUser, logout } from '../api';
+import { facebookLogin, getUser, logout } from '../api';
 import {
     logoutAction,
-    loginAction,
+    facebookLoginAction,
     getUserAction,
     revokeTokenAction,
     refreshUserAction
@@ -40,14 +40,12 @@ export function* handleGetUserSaga() {
     }
 }
 
-function* handleLoginSaga(action) {
-    const { email, name, avatar, token, tokenExpiresAt } = action.payload;
-
+function* handleFacebookLoginSaga(action) {
     try {
-        const { data } = yield call(login, { email, name, avatar, token, tokenExpiresAt });
+        const { data } = yield call(facebookLogin, action.payload);
         Auth.TokenStorage.set(data.token);
-        yield call(handleGetUserSaga);
-        yield put(loginAction.success(data));
+        // yield call(handleGetUserSaga);
+        yield put(facebookLoginAction.success(data));
     } catch (e) {
         const { response = {} } = e;
 
@@ -56,9 +54,9 @@ function* handleLoginSaga(action) {
                 data: { message }
             } = response;
             const se = new SubmissionError({ email: message });
-            yield put(loginAction.failure(se));
+            yield put(facebookLoginAction.failure(se));
         } else {
-            yield put(loginAction.failure(e));
+            yield put(facebookLoginAction.failure(e));
         }
     }
 }
@@ -68,16 +66,16 @@ function* handleLogoutSaga() {
         yield call(logout);
         // socket.disconnect();
         Auth.TokenStorage.remove();
-        yield put(logoutAction.success());
+        yield put(logoutAction.SUCCESS());
     } catch (e) {
-        yield put(loginAction.failure(e));
+        yield put(logoutAction.FAILURE(e));
     }
 }
 
-export const loginWatcherSaga = {
-    key: 'login',
+export const facebookLoginWatcherSaga = {
+    key: 'facebookLogin',
     *saga() {
-        yield takeEvery(loginAction.REQUEST, handleLoginSaga);
+        yield takeEvery(facebookLoginAction.REQUEST, handleFacebookLoginSaga);
     }
 };
 

@@ -2,8 +2,8 @@ import { ApiClient } from 'services/axios';
 
 export const ENDPOINT = '/auth';
 
-export function login({ email, password }) {
-    return ApiClient.post(`${ENDPOINT}/login`, { email, password });
+export function facebookLogin(params) {
+    return ApiClient.post(`${ENDPOINT}/facebook`, params);
 }
 
 export function getUser() {

@@ -5,7 +5,7 @@ import nullfined from 'nullfined';
 import {
     setTokenAction,
     getUserAction,
-    loginAction,
+    facebookLoginAction,
     logoutAction,
     revokeTokenAction,
     refreshUserAction,
@@ -27,7 +27,7 @@ export default {
                     draft.token = payload;
                 }),
             [combineActions(
-                loginAction.REQUEST,
+                facebookLoginAction.REQUEST,
                 logoutAction.REQUEST,
                 refreshUserAction.REQUEST,
                 getUserAction.REQUEST,
@@ -37,19 +37,20 @@ export default {
                 }),
             [combineActions(
                 getUserAction.SUCCESS,
-                refreshUserAction.SUCCESS,
-                getUserAction.SUCCESS
+                refreshUserAction.SUCCESS
             )]: (state, { payload }) =>
                 produce(state, draft => {
                     draft.user = nullfined(payload);
+                    draft.loading = false;
                 }),
-            [loginAction.SUCCESS]: (state, { payload }) =>
+            [facebookLoginAction.SUCCESS]: (state, { payload }) =>
                 produce(state, draft => {
                     draft.token = payload.token;
+                    draft.user = payload;
                     draft.loading = false;
                 }),
             [combineActions(
-                loginAction.FAILURE,
+                facebookLoginAction.FAILURE,
                 logoutAction.FAILURE,
                 refreshUserAction.FAILURE,
                 getUserAction.FAILURE,
