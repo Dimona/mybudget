@@ -41,7 +41,7 @@ export default function LoginPage() {
                 variant="contained"
                 startIcon={<FacebookBoxIcon />}
             >
-                <FormattedMessage {...messages.loginWithButton} values={{ provider: ucfirst(FACEBOOK_PROVIDER) }} />
+                <FormattedMessage {...messages.buttonLoginWith} values={{ provider: ucfirst(FACEBOOK_PROVIDER) }} />
             </SocialButton>
         </div>
     );

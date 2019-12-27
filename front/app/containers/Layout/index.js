@@ -1,15 +1,15 @@
 import React, { memo } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-import HomePage from './HomePage/Loadable';
+import Layout from './Main/Loadable';
 
-function Layout() {
+function LayoutPage() {
     return (
         <Switch>
-            <Route exact path="/" component={HomePage} />
-            <Redirect to="/" />
+            <Route path="/" component={Layout} />
+            <Redirect to="/dashboard" />
         </Switch>
     );
 }
 
-export default memo(Layout);
+export default memo(LayoutPage);
